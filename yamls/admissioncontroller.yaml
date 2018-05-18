@@ -1,0 +1,18 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: denyenv
+webhooks:
+  - name: admitcheck.pavanvelidandla.com
+    rules:
+      - apiGroups:
+          - ""
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+        resources:
+          - pods
+    failurePolicy: Fail
+    clientConfig:
+      url: "https://hqrt1ou15d.execute-api.us-east-1.amazonaws.com/kubeadmitter/KubeAdmitter"
